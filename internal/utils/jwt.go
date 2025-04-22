@@ -9,7 +9,7 @@ import (
 )
 
 type Claims struct {
-	userEmail string `json:"userEmail"`
+	UserEmail string `json:"userEmail"`
 	jwt.StandardClaims
 }
 
@@ -17,7 +17,7 @@ func GenerateToken(userEmail string) (string, error) {
 	cfg, _ := config.LoadConfig("config.toml")
 	expirationTime := time.Now().Add(1 * time.Minute)
 	claims := &Claims{
-		userEmail: userEmail,
+		UserEmail: userEmail,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 			IssuedAt:  time.Now().Unix(),
